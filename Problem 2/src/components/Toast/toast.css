@@ -1,0 +1,104 @@
+/* Positioned by its container (e.g. .toast-region); relative only for the countdown bar. */
+.toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-overlay);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8);
+  animation: toast-in var(--motion-normal) var(--ease-out);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+
+.toast__icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}
+
+.toast__icon circle {
+  fill: var(--color-accent);
+}
+
+.toast__icon path {
+  stroke: var(--color-accent-ink);
+}
+
+.toast__body {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.toast__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 0.9;
+  color: var(--color-accent);
+}
+
+.toast__close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  margin: -4px -4px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.toast__close svg {
+  width: 12px;
+  height: 12px;
+}
+
+.toast__close:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-strong);
+}
+
+/* Countdown bar showing how long the toast has left. */
+.toast__timer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform-origin: left;
+  animation: toast-timer var(--toast-duration) linear forwards;
+}
+
+/* Driven by the same state as the JS timer, so the bar and the countdown never drift apart. */
+.toast[data-paused="true"] .toast__timer {
+  animation-play-state: paused;
+}
+
+@keyframes toast-timer {
+  to {
+    transform: scaleX(0);
+  }
+}

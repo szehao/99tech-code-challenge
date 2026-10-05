@@ -1,0 +1,40 @@
+/* Design tokens: Noir Atelier. Shared values only; one-off sizes live in component CSS. */
+
+:root {
+  color-scheme: dark;
+
+  /* Colour */
+  --color-bg: #0d0c0b;
+  --color-surface: #151311;
+  --color-surface-well: #0f0e0c;
+  --color-surface-control: #1d1a17;
+  --color-surface-hover: #231f1b;
+  --color-overlay: rgb(26 23 20 / 0.92);
+  --color-text: #efe7da;
+  --color-text-strong: #faf6ef;
+  --color-text-muted: #9a9082;
+  --color-text-faint: #8d8478;
+  --color-border: #2b2723;
+  --color-border-strong: #3a342e;
+  --color-accent: rgb(216 182 122);
+  --color-accent-soft: rgb(216 182 122 / 0.14);
+  --color-accent-ink: #1a140b;
+  --color-negative: #e88a73;
+  --color-negative-soft: #2e1410;
+  --gradient-accent: linear-gradient(180deg, #ecd3a1, #c9a15e);
+
+  /* Type */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Shape and motion */
+  --radius-pill: 999px;
+  --motion-fast: 140ms;
+  --motion-normal: 260ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Amount field: useDynamicFontSize shrinks the font between these */
+  --amount-font-max: 36px;
+  --amount-font-min: 24px;
+}

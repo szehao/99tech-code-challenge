@@ -1,0 +1,33 @@
+/* Success toast content (the toast itself is styled in components/toast) */
+
+.swap-toast__summary {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.swap-toast__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: start;
+  margin-top: 2px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-text-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 4px;
+}
+
+.swap-toast__link svg {
+  width: 11px;
+  height: 11px;
+  color: var(--color-accent);
+}
+
+.swap-toast__link:hover {
+  color: var(--color-accent);
+}

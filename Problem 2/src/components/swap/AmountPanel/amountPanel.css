@@ -1,0 +1,130 @@
+/* Amount panel: one side of the swap (label, amount field, token picker, balance) */
+
+.amount-panel {
+  /* Positioning context for the token dropdown, so it is sized to the panel, not the viewport. */
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface-well);
+  transition: border-color var(--motion-fast) ease;
+}
+
+.amount-panel--editable {
+  border-color: rgb(216 182 122 / 0.45);
+}
+
+/* Both panels: the read-only output is still focusable and needs a visible focus state. */
+.amount-panel:focus-within {
+  border-color: var(--color-accent);
+}
+
+.amount-panel__heading {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.amount-panel__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.amount-panel__input {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  /* Fixed to the max size so the panel keeps its height as useDynamicFontSize shrinks the font. */
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-mono);
+  /* Overridden inline by useDynamicFontSize, which reads --amount-font-max/min. */
+  font-size: var(--amount-font-max);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-strong);
+  outline: none;
+  transition: opacity var(--motion-normal) ease;
+}
+
+.amount-panel__input:focus-visible {
+  outline: none; /* the panel's :focus-within border carries focus */
+}
+
+.amount-panel__input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.amount-panel__input[readonly] {
+  cursor: default;
+}
+
+/* Locked mid-swap: dim the amount instead of the browser's default disabled grey. */
+.amount-panel__input:disabled {
+  color: var(--color-text-muted);
+  opacity: 1;
+  cursor: default;
+}
+
+.amount-panel__input[data-pending="true"] {
+  opacity: 0.35;
+}
+
+.amount-panel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  min-height: calc(0.72rem * 1.4);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.amount-panel__balance {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amount-panel__balance-value {
+  color: var(--color-text);
+}
+
+.amount-panel__max {
+  min-width: 24px;
+  min-height: 24px;
+  margin-block: -6px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--motion-fast) ease;
+}
+
+.amount-panel__max:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-text-strong);
+}
+
+.amount-panel__max:active {
+  transform: scale(0.96);
+}
+
+.amount-panel__max:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}

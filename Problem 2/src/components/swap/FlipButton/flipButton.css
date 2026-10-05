@@ -1,0 +1,42 @@
+/* Flip button: swaps the pay and receive sides */
+
+.flip-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  translate: -50% -50%;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 6px var(--color-surface);
+  cursor: pointer;
+  transition:
+    transform var(--motion-normal) var(--ease-out),
+    border-color var(--motion-fast) ease;
+}
+
+.flip-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.flip-button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  transform: rotate(180deg);
+}
+
+.flip-button:active:not(:disabled) {
+  transform: rotate(180deg) scale(0.96);
+}
+
+.flip-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}

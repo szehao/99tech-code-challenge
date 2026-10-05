@@ -1,0 +1,50 @@
+/* Swap details: rate and received-amount summary */
+
+.swap-details {
+  display: grid;
+  gap: 8px;
+  margin: 16px 6px 0;
+  font-size: 0.84rem;
+}
+
+.swap-details__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.swap-details dt {
+  color: var(--color-text-muted);
+}
+
+.swap-details dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.swap-details__rate {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline dotted var(--color-text-faint);
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.swap-details__rate:hover {
+  color: var(--color-accent);
+}
+
+.swap-details__strong {
+  font-weight: 500;
+  color: var(--color-text-strong);
+  transition: opacity var(--motion-normal) ease;
+}
+
+.swap-details__strong[data-pending="true"] {
+  opacity: 0.35;
+}

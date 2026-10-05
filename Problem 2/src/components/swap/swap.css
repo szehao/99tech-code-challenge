@@ -1,0 +1,173 @@
+.swap-card {
+  position: relative;
+  width: min(460px, calc(100vw - 32px));
+  padding: 24px 20px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgb(26 23 20), #151311);
+  box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+.swap-card--message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 230px;
+  color: var(--color-text-muted);
+}
+
+.swap-card--message button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.swap-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 6px 18px;
+}
+
+.swap-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 1.9rem + 3vw, 3.4rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+}
+
+.swap-card__network {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.swap-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+.swap-card__dot[data-slow="true"] {
+  background: var(--color-negative);
+  box-shadow: 0 0 12px var(--color-negative);
+  animation: pulse 1.4s ease infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.swap-card__panels {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+/* ---------- Submit + notices ---------- */
+
+.swap-card__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 58px;
+  margin-top: 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-accent);
+  color: var(--color-accent-ink);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  box-shadow: 0 12px 30px -10px rgb(216 182 122 / 0.55);
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
+}
+
+/* The error (retry) state keeps its own flat look; only the gold action button lifts and glows. */
+.swap-card__submit:not([data-kind="error"]):hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px -10px rgb(216 182 122 / 0.7);
+}
+
+/* Same specificity as the hover rule and declared after it, so pressing wins while hovered. */
+.swap-card__submit:not([data-kind="error"]):active:not(:disabled),
+.swap-card__submit[data-kind="error"]:active {
+  transform: scale(0.96);
+}
+
+.swap-card__submit:disabled {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-well);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.swap-card__submit[data-kind="error"] {
+  background: var(--color-negative);
+  color: var(--color-negative-soft);
+  box-shadow: none;
+}
+
+.swap-card__submit[data-kind="blocked"]:disabled {
+  color: var(--color-negative);
+}
+
+.swap-card__notice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 12px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  animation: rise var(--motion-normal) var(--ease-out);
+}
+
+.swap-card__notice--error {
+  border: 1px solid var(--color-negative);
+  background: var(--color-negative-soft);
+  color: var(--color-negative);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- Toast region ---------- */
+
+/* Always-mounted live region that the success toast renders into (see SwapCard.tsx). */
+.toast-region {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  width: min(360px, calc(100vw - 32px));
+}

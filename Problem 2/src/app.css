@@ -1,0 +1,8 @@
+.app {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 28px;
+  padding: 32px 16px;
+}

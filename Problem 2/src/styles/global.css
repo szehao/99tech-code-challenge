@@ -1,0 +1,66 @@
+@import "./tokens/tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Warm champagne glow behind the card, fixed so it stays put while scrolling. */
+  background-image: radial-gradient(60% 50% at 50% 35%, rgb(216 182 122 / 0.14), transparent 70%), radial-gradient(40% 30% at 80% 90%, rgb(120 60 30 / 0.18), transparent 70%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(216 182 122);
+  outline-offset: 2px;
+}
+
+/* SVG icons (src/assets/general): stroke weight lives here, not in an attribute. */
+.icon-stroke {
+  stroke-width: 1.6;
+}
+
+.icon-stroke--bold {
+  stroke-width: 1.8;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-text-strong);
+}
+
+/*
+ * One reduced-motion rule for the whole app instead of per-component opt-outs that miss
+ * things (chevron rotation, button lift, switch slide). Durations collapse to near zero so
+ * transitionend/animationend still fire and end states are still reached.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
